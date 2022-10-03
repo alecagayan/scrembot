@@ -24,6 +24,8 @@ class StreamAlerts(commands.Cog):
                 stream = self.twitch.get_streams(user_login=streamer)
                 if stream['data']:
                     await self.channel.send(f"{streamer} is live! https://twitch.tv/{streamer}")
+                    #mention role 965702086807392291
+                    await self.channel.send("<@&965702086807392291>")
             await asyncio.sleep(60)
 
 
