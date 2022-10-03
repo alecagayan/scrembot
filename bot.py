@@ -20,6 +20,7 @@ intents.members = True
 client = Bot(description=config.des, command_prefix=config.pref, intents=intents)
 
 client.load_extension("cogs.roles")
+client.load_extension("cogs.streamalerts")
 
 
 @client.event

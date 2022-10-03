@@ -28,4 +28,6 @@ class StreamAlerts(commands.Cog):
                     await self.channel.send("<@&965702086807392291>")
             await asyncio.sleep(60)
 
+def setup(bot):
+    bot.add_cog(StreamAlerts(bot))
 
