@@ -10,7 +10,7 @@ import config
 class StreamAlerts(commands.Cog):
     def __init__(self, client):
         self.client = client
-        self.twitch = Twitch(config.twitch_client_id, config.twitch_client_secret)
+        self.twitch = Twitch(config.twitchid, config.twitchsecret)
         self.twitch.authenticate_app([])
         self.streamer = "screeeeeeem"
         self.channel = self.client.get_channel(config.stream_alerts_channel)
