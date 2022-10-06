@@ -6,6 +6,7 @@ import logging
 import os
 import config
 import asyncio
+import random
 
 
 
@@ -45,6 +46,16 @@ async def hello(ctx):
     await ctx.send("Hello")
     msg = await client.wait_for('message', check=check)
     await ctx.send(f"You said {msg.content}. Hi again.")
+
+@client.command()
+async def ping(ctx):
+    await ctx.send(f"Pong! {round(client.latency * 1000)}ms")
+
+@client.command()
+async def hell(ctx):
+    #generate 400 random characters
+    await ctx.send("".join([chr(random.randint(0, 0x10FFFF)) for i in range(1000)]))
+
 
 
 client.run(config.token)

@@ -26,6 +26,7 @@ class StreamAlerts(commands.Cog):
             if stream['data'] and stream["data"][0]["id"] not in json.load(open("./data/json/streams.json", "r")):
                 # check if streamer is in the json file
                     print(f"{self.streamer} is live!")
+                    await self.channel.send(f"{self.streamer} is live! https://twitch.tv/{self.streamer}\n\n<@&1026293611471568937>")
                     # add streamer to json file
                     json.dump(stream["data"][0]["id"], open("./data/json/streams.json", "w"))
 
