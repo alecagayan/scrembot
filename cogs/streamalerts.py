@@ -6,6 +6,7 @@ from discord.ext import commands
 
 import asyncio
 import config
+import json
 
 class StreamAlerts(commands.Cog):
     def __init__(self, client):
@@ -20,13 +21,17 @@ class StreamAlerts(commands.Cog):
     async def stream_alerts(self):
         await self.client.wait_until_ready()
         while not self.client.is_closed():
-            for streamer in self.streamers:
-                stream = self.twitch.get_streams(user_login=streamer)
-                if stream['data']:
-                    await self.channel.send(f"{streamer} is live! https://twitch.tv/{streamer}")
-                    #mention role 965702086807392291
-                    await self.channel.send("<@&965702086807392291>")
+            stream = self.twitch.get_streams(user_login=self.streamer)
+
+            if stream['data'] and stream["data"][0]["id"] not in json.load(open("./data/json/streams.json", "r")):
+                # check if streamer is in the json file
+                    print(f"{self.streamer} is live!")
+                    # add streamer to json file
+                    json.dump(stream["data"][0]["id"], open("./data/json/streams.json", "w"))
+
             await asyncio.sleep(60)
+
+
 
 def setup(bot):
     bot.add_cog(StreamAlerts(bot))
