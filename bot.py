@@ -53,9 +53,8 @@ async def ping(ctx):
 
 @client.command()
 async def hell(ctx):
-    #generate 400 random characters
-    await ctx.send("".join([chr(random.randint(0, 0x10FFFF)) for i in range(1000)]))
-
+    #generate 1000 random ascii characters
+    await ctx.send("".join([chr(random.randint(32, 126)) for i in range(1000)]))
 
 
 client.run(config.token)
