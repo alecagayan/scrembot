@@ -14,7 +14,7 @@ class StreamAlerts(commands.Cog):
         self.twitch = Twitch(config.twitchid, config.twitchsecret)
         self.twitch.authenticate_app([])
         self.streamer = "screeeeeeem"
-        self.channel = self.client.get_channel(config.stream_alerts_channel)
+        self.channel = self.client.get_channel(965397925150736444)
         self.loop = asyncio.get_event_loop()
         self.loop.create_task(self.stream_alerts())
 
