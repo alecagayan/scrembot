@@ -14,7 +14,6 @@ class StreamAlerts(commands.Cog):
         self.twitch = Twitch(config.twitchid, config.twitchsecret)
         self.twitch.authenticate_app([])
         self.streamer = "screeeeeeem"
-        self.channel = self.client.get_channel(965397925150736444)
         self.loop = asyncio.get_event_loop()
         self.loop.create_task(self.stream_alerts())
 
@@ -22,11 +21,11 @@ class StreamAlerts(commands.Cog):
         await self.client.wait_until_ready()
         while not self.client.is_closed():
             stream = self.twitch.get_streams(user_login=self.streamer)
-
+            channel = self.client.get_channel(965397925150736444)
             if stream['data'] and stream["data"][0]["id"] not in json.load(open("./data/json/streams.json", "r")):
                 # check if streamer is in the json file
                     print(f"{self.streamer} is live!")
-                    await self.channel.send(f"{self.streamer} is live! https://twitch.tv/{self.streamer}\n\n<@&1026293611471568937>")
+                    await channel.send(f"{self.streamer} is live! https://twitch.tv/{self.streamer}")
                     # add streamer to json file
                     json.dump(stream["data"][0]["id"], open("./data/json/streams.json", "w"))
 
@@ -35,5 +34,5 @@ class StreamAlerts(commands.Cog):
 
 
 def setup(bot):
-    bot.add_cog(StreamAlerts(bot))
+   bot.add_cog(StreamAlerts(bot))
 
