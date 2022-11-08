@@ -29,7 +29,7 @@ class StreamAlerts(commands.Cog):
                     # add streamer to json file
                     json.dump(stream["data"][0]["id"], open("./data/json/streams.json", "w"))
 
-            await asyncio.sleep(60)
+            await asyncio.sleep(300)
 
 
 
